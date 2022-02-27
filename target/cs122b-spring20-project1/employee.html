@@ -1,0 +1,100 @@
+<!-- This page will be redirected from any url if you are not logged in -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login to Fablix</title>
+    <script type="text/javascript">
+        function showDatabase() {
+
+            window.location.replace("showMeta.html");
+
+
+
+        }
+    </script>
+
+
+</head>
+<body>
+<h2>Employee Page</h2>
+<!-- Set the method to POST to avoid showing the username/password in the URL
+     The default action is disabled to allow your own implementation. -->
+<span style="position:absolute; left:500px; top:100px;">
+<form id="showDatabase" method="post" action="#">
+
+    <br><br>
+    <input type="button" value="Show the Database Structure" style="height:30px;width:200px;" onclick="showDatabase()" >
+</form>
+ <br>
+  <br>
+   <br>
+<form id="addStar" method="post" action="#">
+    <label><b> Add a Star</b></label>
+  <br>
+  <br>
+  <label><b>Star Name</b></label>
+    <label>
+        <input name="starname" placeholder="Enter StarName" type="text">
+    </label>
+  <br>
+     <label><b>BirthYear</b></label>
+    <label>
+        <input name="birthyear" placeholder="Enter BirthYear(optional)" type="text">
+    </label>
+    <br>
+    <br>
+
+    <br>
+    <input type="submit" value="Add a Star" >
+
+</form>
+  <br>
+
+<form id="addMovie" method="post" action="#">
+   <label><b> Add a New Movie</b></label>
+  <br>
+  <br>
+    <label><b>Movie Name</b></label>
+    <label>
+        <input name="moviename" placeholder="Enter MovieName" type="text">
+    </label>
+    <br>
+    <label><b>Star Name</b></label>
+    <label>
+        <input name="starname" placeholder="Enter StarName" type="text">
+    </label>
+    <br>
+    <label><b>Genres</b></label>
+    <label>
+        <input name="Genres" placeholder="Enter Genres" type="text">
+    </label>
+    <br>
+    <label><b>Director</b></label>
+    <label>
+        <input name="Director" placeholder="Enter Director" type="text">
+    </label>
+    <br>
+    <label><b>Year</b></label>
+    <label>
+        <input name="Year" placeholder="Enter Year" type="text">
+    </label>
+    <br>
+  <br>
+
+
+    <input type="submit" value="Add a Movie" >
+
+</form>
+   </span>
+
+<div id="login_error_message"></div>
+
+<!-- include jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- include our own JS file -->
+<script src="./employee.js"></script>
+<script src="./newemployee.js"></script>
+
+</body>
+</html>

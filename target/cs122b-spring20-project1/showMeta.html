@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $.post("api/showMeta",function (response) {
+                var tables = JSON.parse(response);
+                var tablesMap = jsonToMap(tables);
+                console.log(tablesMap);
+                var j = 0;
+                tablesMap.forEach(function(value,key){
+                    console.log(key+":"+value);
+                    var table = "<table border='1'><caption>"+key+"</caption>";
+                    var trs = "";
+                    for (let i = 0; i < value.length; i++) {
+                        for (const keyKey in value[i]) {
+                            console.log(keyKey+":"+value[i][keyKey]);
+                            var tr = "<tr>" +
+                                "<td>"+keyKey+"</td>" +
+                                "<td>"+value[i][keyKey]+"</td>" +
+                                "</tr>";
+                            trs += tr;
+                        }
+                    }
+
+                    j++;
+                    if( j <= 3){
+                        //var div = $("body")[0].append("<div class='table'></div>");
+                        $("#tables").append(table+trs+"</table>");
+                    }
+                    if(j > 3 && j <= 6){
+                        $("#tables1").append(table+trs+"</table>");
+                    }
+                    if(j > 6 && j <= 9){
+                        $("#tables2").append(table+trs+"</table>");
+                    }
+                    if(j > 9 && j <= 12){
+                        $("#tables3").append(table+trs+"</table>");
+                    }
+
+                });
+            });
+        });
+        function jsonToMap(json) {
+            var map = new Map();
+            for(let k of Object.keys(json)){
+                map.set(k,json[k]);
+            }
+            return map;
+        }
+    </script>
+    <style>
+        .tables{
+            float: left;
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tables" class="tables"></div>
+    <div id="tables1" class="tables"></div>
+    <div id="tables2" class="tables"></div>
+    <div id="tables3" class="tables"></div>
+</body>
+</html>

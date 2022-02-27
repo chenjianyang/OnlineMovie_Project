@@ -1,0 +1,124 @@
+<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">-->
+<!---->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Form Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- include jquery autocomplete JS  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+
+    <!-- Bootstrap for CSS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body BGCOLOR="#FDF5E6">
+<h1 ALIGN="CENTER">Search Movie</h1>
+
+
+
+
+
+
+<p><h5><font size="4">advanced search</font></h5></p>
+<form id="searchForm"  METHOD="POST" ACTION="#">
+    Title: <input TYPE="TEXT" name="title"><br>
+
+    Year: <input TYPE="TEXT" name="year"><br>
+
+    Director: <input TYPE="TEXT" name="director"><br>
+
+    Star's name: <input TYPE="TEXT" NAME="star"><br>
+
+    <input TYPE="SUBMIT" VALUE="Submit Order">
+
+    <!--    <a href="index.html?mode=1"> <button>Search</button></a>-->
+
+</form>
+
+<span style="position:absolute; right:30%; top:100px;">
+     <b><p><font size="5"> quick search </font>
+   </p></b>
+<div class="container">
+    <input type="text" name="title" id="autocomplete"
+           class="autocomplete-searchbox form-control"
+           placeholder="Search Movies"/>
+
+    <input type="button" VALUE="search"  onclick="submit2()">
+</div>
+</span>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    function Jump(data)
+    {
+        window.location.replace("index.html?mode=1&sort=1&num=20");
+    }
+    function submit2() {
+        var title=document.getElementById("autocomplete").value;
+        console.log("sumbit success")
+        $.post("api/movie",{"title":title},function(data){
+
+            if(data){
+                alert("search success");
+                Jump(data);
+            }else{
+                alert("search fail");
+            }
+        })
+
+
+    }
+
+</script>
+
+
+
+
+
+
+<p>
+<h4>Browsing Movie by name</h4>
+</p>
+
+<p>
+    <a href="index.html?mode=2&browse=a&sort=1&num=20">a</a> <a href="index.html?mode=2&browse=b&sort=1&num=20">b</a> <a href="index.html?mode=2&browse=c&sort=1&num=20">c</a> <a href="index.html?mode=2&browse=d&sort=1&num=20">d</a> <a href="index.html?mode=2&browse=e&sort=1&num=20">e</a> <a href="index.html?mode=2&browse=f&sort=1&num=20">f</a> <a href="index.html?mode=2&browse=g&sort=1&num=20">g</a> <a href="index.html?mode=2&browse=h&sort=1&num=20">h</a> <a href="index.html?mode=2&browse=i&sort=1&num=20">i</a> <a href="index.html?mode=2&browse=j&sort=1&num=20">j</a> <a href="index.html?mode=2&browse=k&sort=1&num=20">k</a> <a href="index.html?mode=2&browse=l&sort=1&num=20">l</a> <a href="index.html?mode=2&browse=m&sort=1&num=20">m</a> <a href="index.html?mode=2&browse=n&sort=1&num=20">n</a> <a href="index.html?mode=2&browse=o&sort=1&num=20">o</a> <a href="index.html?mode=2&browse=p&sort=1&num=20">p</a> <a href="index.html?mode=2&browse=q&sort=1&num=20">q</a> <a href="index.html?mode=2&browse=r&sort=1&num=20">r</a> <a href="index.html?mode=2&browse=s&sort=1&num=20">s</a> <a href="index.html?mode=2&browse=t&sort=1&num=20">t</a> <a href="index.html?mode=2&browse=u&sort=1&num=20">u</a> <a href="index.html?mode=2&browse=v&sort=1&num=20">v</a> <a href="index.html?mode=2&browse=w&sort=1&num=20">w</a> <a href="index.html?mode=2&browse=x&sort=1&num=20">x</a> <a href="index.html?mode=2&browse=y&sort=1&num=20">y</a> <a href="index.html?mode=2&browse=z&sort=1&num=20">z</a>
+</p>
+<p>
+    <a href="index.html?mode=2&browse=0&sort=1&num=20">0</a> <a href="index.html?mode=2&browse=1&sort=1&num=20">1</a> <a href="index.html?mode=2&browse=2&sort=1&num=20">2</a> <a href="index.html?mode=2&browse=3&sort=1&num=20">3</a> <a href="index.html?mode=2&browse=4&sort=1&num=20">4</a> <a href="index.html?mode=2&browse=5&sort=1&num=20">5</a> <a href="index.html?mode=2&browse=6&sort=1&num=20">6</a> <a href="index.html?mode=2&browse=7&sort=1&num=20">7</a> <a href="index.html?mode=2&browse=8&sort=1&num=20">8</a> <a href="index.html?mode=2&browse=9&sort=1&num=20">9</a> <a href="index.html?mode=2&browse=test&sort=1&num=20">*</a>
+</p>
+
+<p>
+<h4>Browsing Movie by Genres</h4>
+</p>
+<p>
+<table id=star_table class="table table-striped">
+    <tbody id=star_table_body></tbody>
+</table>
+</p>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<script src="newsearch.js"></script>
+<script src="forsearch.js"></script>
+<script src="autocomplete.js"></script>
+
+
+</body>
+</html>
